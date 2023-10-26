@@ -45,7 +45,7 @@ export function renderComments(comments) {
       ${commentsHTML};
 
       </ul>
-      ${token ? `<div class="add-form hidden">
+      ${token ? `<div class="add-form">
       <input id="name-input"
         type="text"
         class="add-form-name"

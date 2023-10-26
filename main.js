@@ -2,6 +2,7 @@ import { getElements, postElements, showAddForm, hideAddForm, deleteLoadingIndic
 
 import { userAutorisation } from "./login.js"
 import { renderComments } from "./renderComments.js"
+import {format} from "date-fns";
 "use strict";
 
 userAutorisation();
@@ -32,10 +33,13 @@ export function getFetch() {
 
   getElements().then((responseData) => {
     const appComment = responseData.comments.map((comment) => {
+      const createDate = format(
+        new Date(comment.date),
+        "yyyy-MM-dd hh.mm.ss")
 
       return {
         name: comment.author.name,
-        date: correctDate(comment.date),
+        date: createDate,
         text: comment.text,
         likes: comment.likes,
         islike: false,
@@ -67,7 +71,7 @@ getFetch();
 
 const listElement = document.getElementById("list");
 const nameInputElement = document.getElementById("name-input");
-const commentInputElement = document.getElementById("comment-input");
+//const commentInputElement = document.getElementById("comment-input");
 //const currentDate = new Date ().toLocaleString().slice(0, -3);
 
 
